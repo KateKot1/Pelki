@@ -1,7 +1,6 @@
-using Pelki.Gameplay.DamageSystem;
 using UnityEngine;
 
-namespace Pelki.Gameplay
+namespace Pelki.Gameplay.DamageSystem
 {
     public class ProjectileSpawner : MonoBehaviour
     {

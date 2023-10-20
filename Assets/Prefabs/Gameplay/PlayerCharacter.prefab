@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1964c181466d4f9d86a493b4bc5a5512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mover: {fileID: 2790103788056400148}
   maxHealth: 100
   isDebugLog: 1
+  mover: {fileID: 2790103788056400148}
   projectileSpawner: {fileID: 4859900522612921984}
-  attackCooldown: 3
+  attackCooldown: 0.5
 --- !u!114 &4859900522612921984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,17 +170,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   brakingTime: 2
+  jumpVelocity: 12.23
+  gravityFactor: 3
   groundMask:
     serializedVersion: 2
     m_Bits: 256
   radiusGroundCheck: 0.05
-  gravityFactor: 3
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 0
-  collider: {fileID: 5330133580825591984}
   rigidBody: {fileID: 8486300192252409073}
-  jumpVelocity: 12.23
   isDrawDebug: 1
   checkGroundDebugRayColor: {r: 1, g: 0, b: 0.1701541, a: 1}
 --- !u!1 &1473735367704536256

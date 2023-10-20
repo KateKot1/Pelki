@@ -102,13 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitsLimit: 1
   layerMaskDamage:
     serializedVersion: 2
     m_Bits: 512
-  layerMaskDestroy:
-    serializedVersion: 2
-    m_Bits: 273
 --- !u!114 &46404658383535722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,9 +117,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337f24fb3d33448aa2cea3315b871759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damager: {fileID: 3302671683144856736}
   rigidbody2d: {fileID: 6171906741065146579}
   speed: 50
+  hitsLimit: 1
+  layerMaskDestroy:
+    serializedVersion: 2
+    m_Bits: 16657
+  damager: {fileID: 3302671683144856736}
 --- !u!58 &8679609607637934739
 CircleCollider2D:
   m_ObjectHideFlags: 0
