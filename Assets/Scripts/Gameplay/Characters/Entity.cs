@@ -1,6 +1,6 @@
 using System;
 using NaughtyAttributes;
-using Pelki.Interfaces;
+using Pelki.Gameplay.DamageSystem;
 using UnityEngine;
 
 namespace Pelki.Gameplay.Characters

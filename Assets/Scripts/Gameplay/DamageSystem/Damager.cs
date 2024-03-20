@@ -1,6 +1,5 @@
 using System;
 using NaughtyAttributes;
-using Pelki.Interfaces;
 using UnityEngine;
 
 namespace Pelki.Gameplay.DamageSystem

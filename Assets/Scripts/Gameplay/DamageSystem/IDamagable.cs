@@ -1,4 +1,4 @@
-namespace Pelki.Interfaces
+namespace Pelki.Gameplay.DamageSystem
 {
     public interface IDamageable
     {
