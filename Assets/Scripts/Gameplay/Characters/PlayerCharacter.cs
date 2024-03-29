@@ -3,7 +3,7 @@ using Pelki.Gameplay.Camera;
 using Pelki.Gameplay.Characters.Animations;
 using Pelki.Gameplay.Characters.Attack;
 using Pelki.Gameplay.Characters.Movements;
-using Pelki.Gameplay.Input;
+using Pelki.Gameplay.Inputs;
 using Pelki.Gameplay.Inventories;
 using Pelki.Gameplay.Inventories.Items;
 using UnityEngine;

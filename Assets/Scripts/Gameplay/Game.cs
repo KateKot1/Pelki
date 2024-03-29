@@ -2,7 +2,7 @@ using System.Linq;
 using Pelki.Configs;
 using Pelki.Gameplay.Camera;
 using Pelki.Gameplay.Characters;
-using Pelki.Gameplay.Input;
+using Pelki.Gameplay.Inputs;
 using Pelki.Gameplay.Inventories;
 using Pelki.Gameplay.SaveSystem;
 using Pelki.UI;
@@ -23,9 +23,11 @@ namespace Pelki.Gameplay
         private CameraDistributor _cameraDistributor;
         private PlayerCharacter _playerCharacter;
         private InventoryProgress _inventoryProgress;
+        private Vector3 _spawnPosition;
 
         public Game(LevelsConfig levelsConfig, CharactersConfig charactersConfig, ScreenSwitcher screenSwitcher,
-            IInput input, LevelProgress progress, CameraDistributor cameraDistributor, InventoryProgress inventoryProgress)
+            IInput input, LevelProgress progress, CameraDistributor cameraDistributor, 
+            InventoryProgress inventoryProgress)
         {
             _charactersConfig = charactersConfig;
             _input = input;
@@ -44,8 +46,32 @@ namespace Pelki.Gameplay
         {
             Level levelPrefab = _levelsConfig.DebugLevelPrefab;
             _level = Object.Instantiate(levelPrefab);
+            
+            InitializeSavePoints();
+
+            foreach (var pickUpPuzzleKey in _inventoryProgress.PickedUpPuzzleKeys)
+            {
+                if (_level.PuzzleKeysRegister.ContainsKey(pickUpPuzzleKey))
+                {
+                    _level.PuzzleKeysRegister[pickUpPuzzleKey].Destroy();
+                }
+            }
+            Inventory inventory = new Inventory(_inventoryProgress);
+
+            _playerCharacter = Object.Instantiate(_charactersConfig.PlayerCharacterPrefab,
+                _spawnPosition,
+                Quaternion.identity, _level.transform);
+            _playerCharacter.Construct(_input, inventory);
+
+            _cameraDistributor.SetTargetFollow(_playerCharacter);
+
+            _screenSwitcher.ShowScreen<GameScreen>();
+        }
+
+        private void InitializeSavePoints()
+        {
             SavePoint spawnSavePoint = _level.SavePointsRegister[_levelProgress.LastSavePointId];
-            Vector3 spawnPosition = spawnSavePoint.transform.position;
+            _spawnPosition = spawnSavePoint.transform.position;
             foreach (var savePointItem in _level.SavePointIdsRegister)
             {
                 if (savePointItem.Key.Equals(spawnSavePoint)
@@ -60,24 +86,6 @@ namespace Pelki.Gameplay
                     savePointItem.Key.Saved += OnSaved;
                 }
             }
-
-            foreach (var pickUpPuzzleKey in _inventoryProgress.PickedUpPuzzleKeys)
-            {
-                if (_level.PuzzleKeysRegister.ContainsKey(pickUpPuzzleKey))
-                {
-                    _level.PuzzleKeysRegister[pickUpPuzzleKey].Destroy();
-                }
-            }
-            Inventory inventory = new Inventory(_inventoryProgress);
-
-            _playerCharacter = Object.Instantiate(_charactersConfig.PlayerCharacterPrefab,
-                spawnPosition,
-                Quaternion.identity, _level.transform);
-            _playerCharacter.Construct(_input, inventory);
-
-            _cameraDistributor.SetTargetFollow(_playerCharacter);
-
-            _screenSwitcher.ShowScreen<GameScreen>();
         }
 
         private void OnSaved(SavePoint savePoint)

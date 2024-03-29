@@ -1,4 +1,4 @@
-namespace Pelki.Gameplay.Input
+namespace Pelki.Gameplay.Inputs
 {
     public interface IInput
     {

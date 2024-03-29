@@ -1,5 +1,5 @@
 ﻿using System;
-using Pelki.Gameplay.Input;
+using Pelki.Gameplay.Inputs;
 using UnityEngine;
 
 namespace Pelki.Gameplay.Characters.Attack

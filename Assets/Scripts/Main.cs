@@ -1,7 +1,7 @@
 using Pelki.Configs;
 using Pelki.Gameplay;
 using Pelki.Gameplay.Camera;
-using Pelki.Gameplay.Input;
+using Pelki.Gameplay.Inputs;
 using Pelki.Gameplay.Inventories;
 using Pelki.Gameplay.SaveSystem;
 using Pelki.UI;
